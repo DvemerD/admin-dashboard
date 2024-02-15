@@ -1,0 +1,8 @@
+.comments {
+  &__wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-auto-rows: calc(50vh - 79px);
+    grid-gap: 9px;
+  }
+}

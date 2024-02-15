@@ -1,0 +1,40 @@
+.menu {
+  &__more {
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    position: absolute;
+    right: 26px;
+    top: 36px;
+    min-width: 200px;
+    color: #171618;
+    list-style-type: none;
+    padding: 16px;
+    line-height: 28px;
+    z-index: 1;
+    border-radius: 12px;
+    background: #FFF;
+    box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.03), 0px 0px 16px 0px rgba(0, 0, 0, 0.02);
+
+    li {
+      cursor: pointer;
+
+      &:hover {
+        opacity: .6;
+      }
+    }
+  }
+
+  &__item-first {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: #13A4BD;
+      height: 1px;
+      width: 50px;
+      left: 0;
+      bottom: 0;
+    }
+  }
+}

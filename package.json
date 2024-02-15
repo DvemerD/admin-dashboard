@@ -1,0 +1,12 @@
+{
+  "name": "admin-panel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"python server/manage.py runserver\" \"npm --prefix client run dev -- --host\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}

@@ -1,0 +1,32 @@
+.users {
+  &__create-btn {
+    background-color: transparent;
+    border: 1px solid #13A4BD;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #030303;
+    transition: color .3s, background .3s;
+
+    &:hover {
+      background: #13A4BD;
+      color: #fff;
+    }
+  }
+
+  &__field {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 500px) {
+  .users {
+    .search {
+      max-width: 100%;
+    }
+  }
+}

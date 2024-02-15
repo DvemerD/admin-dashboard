@@ -1,0 +1,36 @@
+.comment {
+  &__item {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    background: #FAF9FA;
+    padding: 9px 12px 6px;
+    box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.03), 0px 0px 16px 0px rgba(0, 0, 0, 0.02);
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    &__descr {
+      flex-grow: 1;
+    }
+
+    &__more {
+      cursor: pointer;
+    }
+  }
+
+  &__rating {
+    cursor: pointer;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+}

@@ -1,14 +1,13 @@
-import { useEffect } from "react";
-import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import Header from "../header/Header";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NewOrdersPage from "../../pages/newOrdersPage/NewOrdersPage";
 import HistoryPage from "../../pages/historyPage/HistoryPage";
 import UsersPage from "../../pages/usersPage/UsersPage";
 import CommentsPage from "../../pages/commentsPage/CommentsPage";
 import ChangeRatePage from "../../pages/changeRatePage/ChangeRatePage";
-import UserInfoPage from "../../pages/userInfoPage/UserProfilePage";
+import UserProfilePage from "../../pages/userProfilePage/UserProfilePage";
 import LoginPage from "../../pages/loginPage/LoginPage";
 import PrivateRoutes from "../../shared/privateRoutes/PrivateRoutes";
+import UserEditPage from "../../pages/userEditPage/UserEditPage";
 
 
 function App() {
@@ -23,7 +22,8 @@ function App() {
               <Route path="/users" element={<UsersPage />} />
               <Route path="/comments" element={<CommentsPage />} />
               <Route path="/change-rate" element={<ChangeRatePage />} />
-              <Route path="/user/:id" element={<UserInfoPage />} />
+              <Route path="/user/:id" element={<UserProfilePage />} />
+              <Route path="/user/:id/edit" element={<UserEditPage />} />
             </Route>
             <Route path="/login" element={<LoginPage />} />
           </Routes>

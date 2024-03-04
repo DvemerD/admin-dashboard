@@ -18,11 +18,11 @@ const UserInfo = () => {
       <div className="user__header">
         <h1 className="user__title title__box">User profile</h1>
         <div className="user__header-btns">
-          <Link to={`/user/${id}/edit`} className="user-info__btn btn-link">
+          <Link to={`/user/${id}/edit`} className="user-info__btn btn-tr">
             Edit
             <img src={writeIcon} alt="write" />
           </Link>
-          <Link to="/users" className="user-info__btn btn-link">
+          <Link to="/users" className="user-info__btn btn-tr">
             Back
             <img src={arrowBackIcon} alt="arrow back" />
           </Link>

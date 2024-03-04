@@ -41,17 +41,17 @@ const CreateRate = () => {
         </div>
         <div className="rate-create__wrapper">
           <div className="rate-create__inner">
-            <InputField name="sold_currency" label="Coin Currency" onChange={defaultValidate} />
+            <InputField name="sold_currency" label="Coin Currency" />
             <InputField name="coin_rate" label="Coin Rate" onChange={validateNumberInput} />
             <img className="rate-create__arrow" src={arrowIcon} alt="arrow left" />
-            <InputField name="bought_currency" label="Dollar Currency" onChange={defaultValidate} />
+            <InputField name="bought_currency" label="Dollar Currency" />
             <InputField name="dollar_rate" label="Dollar Rate" onChange={validateNumberInput} />
           </div>
 
           <InputField name="market_rate" label="Murkup" onChange={validateNumberInput} />
           <InputField name="market_rate_other" label="Murkup 2" onChange={validateNumberInput} />
           <InputField name="round_num" label="Rounding" onChange={validateNumberInput} />
-          <InputField name="image" label="Image" onChange={defaultValidate} />
+          <InputField name="image" label="Image" />
         </div>
       </Form>
     </Formik>

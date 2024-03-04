@@ -1,0 +1,32 @@
+.file {
+  input {
+    display: none;
+  }
+
+  .btn-upload {
+    color: #29B0DB;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity .2s ease-in;
+    cursor: pointer;
+
+    &:hover {
+      opacity: .3;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: end;
+    gap: 12px;
+  }
+
+  &__name {
+    color: rgba(3, 3, 3, 0.5);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from "react";
+import { memo } from "react";
 import { useField } from "formik";
 import chekIcon from "../../assets/delivered-icon.svg";
 

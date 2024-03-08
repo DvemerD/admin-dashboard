@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { useFormikContext } from "formik";
 import useOutsideClick from "../../hooks/UseOutsideClick";
 import arrowMore from "../../assets/arrow-more-icon.svg";
@@ -10,9 +10,25 @@ const SelectField = memo(({ name, label, options }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
   const { setFieldValue } = useFormikContext();
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef();
+  const selectRef = useRef();
 
   useOutsideClick(dropdownRef, () => setIsOpen(false));
+
+  useEffect(() => {
+    if (selectRef.current) {
+      const select = selectRef.current;
+      const rect = select.getBoundingClientRect();
+
+      select.style.top = '35px';
+      select.style.bottom = `initial`;
+
+      if (rect.bottom > window.innerHeight) {
+        select.style.bottom = `${35}px`;
+        select.style.top = `initial`;
+      }
+    }
+  }, [isOpen]);
 
   return (
     <div className="select" ref={dropdownRef}>
@@ -22,7 +38,7 @@ const SelectField = memo(({ name, label, options }) => {
           {selectedOption}
           <img src={isOpen ? arrowHide : arrowMore} alt="icon" />
         </div>
-        <ul className={`select__list ${isOpen && "select__list_active"}`}>
+        <ul className={`select__list ${isOpen && "select__list_active"}`} ref={selectRef}>
           {options.map((option, i) => (
             <li
               className="select__list__item"

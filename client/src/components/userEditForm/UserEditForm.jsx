@@ -1,14 +1,15 @@
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import deliveredIcon from "../../assets/delivered-icon.svg";
 import closeIcon from "../../assets/close-icon.svg";
 import InputField from "../../shared/inputField/InputField";
-import { defaultValidate, formateDate } from "../../utils/helpers";
-
-import "./userEditForm.scss";
 import CheckboxField from "../../shared/checkboxField/CheckboxField";
 import FileLoaderField from "../../shared/fileLoaderField/FileLoaderField";
 import SelectField from "../../shared/selectField/SelectField";
+import CalendarField from "../../shared/calendarField/CalendarField";
+import { formateDate } from "../../utils/helpers";
+
+import "./userEditForm.scss";
 
 const userData = {};
 
@@ -25,7 +26,9 @@ const UserEditForm = () => {
           telegram: '',
           email: '',
           corresponds: false,
-          skan_wallet: ''
+          skan_wallet: '',
+          skan_id: '',
+          skan_person: '',
         }}
         onSubmit={values => {
           console.log(values);
@@ -84,7 +87,7 @@ const UserEditForm = () => {
             <div className="user__info-body">
               <div className="user__info-section">
                 <div className="user__info-item">
-                  <InputField name="birth_date" label="Date of birth" />
+                  <CalendarField name="birth_date" label="Date of birth" />
                 </div>
                 <div className="user__info-item">
                   <InputField name="nationality" label="Nationality" />
@@ -97,116 +100,83 @@ const UserEditForm = () => {
                   <SelectField
                     name="gender"
                     label="Gender"
-                    options={["Male", "Female", "Other"]}
+                    options={["Select a gender", "Male", "Female", "Other"]}
                   />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Birth number</h2>
-                  <div className="user__info-text">
-                    {userData.birth_number === "A" && "Allocated"}
-                    {userData.birth_number === "U" && "Unassigned"}
-                    {!userData.birth_number && "no"}
-                  </div>
+                  <SelectField
+                    name="birth_number"
+                    label="Birth number"
+                    options={["Select a birth", "Allocated", "Unassigned"]}
+                  />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Exact address and country of residence</h2>
-                  <div className="user__info-text">{userData.address_residence || "no"}</div>
+                  <InputField name="address_residence" label="Exact address and country of residence" />
                 </div>
               </div>
-
               <div className="user__info-section">
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Type of ID card</h2>
-                  <div className="user__info-text">
-                    {userData.type_id_card === "P" && "Passport"}
-                    {userData.type_id_card === "I" && "ID card"}
-                    {userData.type_id_card === "D" && "Driving licence"}
-                    {userData.type_id_card === "R" && "Residence permit"}
-                    {userData.type_id_card === "O" && "Other ID"}
-                    {!userData.type_id_card && "no"}
-                  </div>
+                  <SelectField
+                    name="type_id_card"
+                    label="Type of ID card"
+                    options={["Select of type", "Passport", "ID card",
+                      "Driving licence", "Residence permit", "Other ID"]}
+                  />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Identity card number</h2>
-                  <div className="user__info-text">{userData.indetity_card_number || "no"}</div>
+                  <InputField name="indetity_card_number" label="Identity card number" />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">The authority that issued ID</h2>
-                  <div className="user__info-text">{userData.authority || "no"}</div>
+                  <InputField name="authority" label="The authority that issued ID" />
                 </div>
                 <div className="user__info-item__combined">
                   <h2 className="user__info-title">Date of validity of ID</h2>
                   <div className="user__info-text">
-                    <div className="user__info-text__wrapper">From: {userData.date_of_validity_from ?
-                      userData.date_of_validity_from.replace(/-/g, ".") : "no"} </div>
-                    <div className="user__info-text__wrapper">Until: {
-                      userData.date_of_validity_until ?
-                        userData.date_of_validity_until.replace(/-/g, ".") : "no"}</div>
-                  </div>
-                </div>
-                <div className="user__info-item">
-                  <h2 className="user__info-title">Scanned copy of the ID card</h2>
-                  <div className="user__info-text">
-                    <div className="user__info-text">{userData.skan_id ?
-                      <a
-                        className="link"
-                        href={userData.skan_id}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >Open file</a> : "no"}
+                    <div className="user__info-text__wrapper">
+                      From: <CalendarField name="date_of_validity_from" />
+                    </div>
+                    <div className="user__info-text__wrapper">
+                      Until: <CalendarField name="date_of_validity_until" />
                     </div>
                   </div>
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Is this person or PEP client?</h2>
-                  <div className="user__info-text">{userData.pep_client ? "yes" : "no"}*</div>
+                  <FileLoaderField name="skan_id" label="Scanned copy of the ID card" />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Scanned copy PEP</h2>
-                  <div className="user__info-text">{userData.skan_person ?
-                    <a
-                      className="link"
-                      href={userData.skan_person}
-                      target="_blank"
-                    >Open file</a> : "no"}
-                  </div>
+                  <CheckboxField name="pep_client" label="Is this person or PEP client?" />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">International sanctions</h2>
-                  <div className="user__info-text">{userData.sanctions ? "yes" : "no"}*</div>
+                  <FileLoaderField name="skan_person" label="Scanned copy PEP" />
+                </div>
+                <div className="user__info-item">
+                  <CheckboxField name="sanctions" label="International sanctions" />
                 </div>
               </div>
 
               <h2 className="user__info-title user__info-title__busines">The client acts as a natural person engaged in business </h2>
               <div className="user__info-section">
-                <div className="user__info-item__combined">
-                  <h2 className="user__info-title">Business name</h2>
-                  <div className="user__info-text">{userData.client_acts ? userData.client_acts.business_name : "no"}</div>
+                <div className="user__info-item">
+                  <InputField name="business_name" label="Business name" />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Register office</h2>
-                  <div className="user__info-text">{userData.client_acts ? userData.client_acts.address : "no"}</div>
+                  <InputField name="address" label="Register office" />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">ID</h2>
-                  <div className="user__info-text">{userData.client_acts ? userData.client_acts.id_number : "no"}</div>
+                  <InputField name="id_number" label="ID" />
                 </div>
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Establishment in a country at risk</h2>
-                  <div className="user__info-text">{userData.client_acts ? (userData.client_acts.country_at_risk && "yes") : "no"}</div>
+                  <CheckboxField name="country_at_risk" label="Establishment in a country at risk" />
                 </div>
                 <div className="user__info-item__combined">
-                  <h2 className="user__info-title">Carry out enchanced screening of the client</h2>
-                  <div className="user__info-text">{userData.client_acts ? (userData.client_acts.country_at_risk && "yes") : "no"}</div>
+                  <CheckboxField name="screening_of_the_client" label="Carry out enchanced screening of the client" />
                 </div>
                 <div className="user__info-item_ones">
-                  <h2 className="user__info-title">The client is a legal entity</h2>
-                  <div className="user__info-text">
-                    {userData.client_legal_entity === "S" && "Statutor"}
-                    {userData.client_legal_entity === "P" && "Power of attorney"}
-                    {userData.client_legal_entity === "O" && "Other"}
-                    {!userData.client_legal_entity && "no"}
-                  </div>
+                  <SelectField
+                    name="client_legal_entity"
+                    label="The client is a legal entity"
+                    options={["Select a choices", "Statutor", "Power of attorney", "Other"]}
+                  />
                 </div>
               </div>
             </div>

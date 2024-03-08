@@ -1,5 +1,5 @@
-import { useFormikContext } from "formik";
 import { memo, useState } from "react";
+import { useFormikContext } from "formik";
 import uploadIcon from "../../assets/upload-file-icon.svg"
 
 import "./fileLoaderField.scss";

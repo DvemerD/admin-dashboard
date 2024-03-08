@@ -1,0 +1,52 @@
+.select {
+  &__btn {
+    position: relative;
+  }
+
+  &__header {
+    background: #FEFEFE;
+    border: 1px solid #29B0DB;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    height: 30px;
+    width: 100%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  &__list {
+    position: absolute;
+    background: #FEFEFE;
+    top: 35px;
+    left: 0;
+    width: 100%;
+    padding: 0 10px;
+    border: none;
+    border-radius: 8px;
+    height: 0;
+    overflow: hidden;
+
+    &_active {
+      height: auto;
+      overflow: visible;
+      border: 1px solid #29B0DB;
+    }
+
+    &__item {
+      list-style-type: none;
+      padding: 4px 0;
+      margin: 0;
+      cursor: pointer;
+      transition: opacity .2s ease-in;
+
+      &:hover {
+        opacity: .5;
+      }
+    }
+  }
+}

@@ -2,10 +2,10 @@ import { Field, Form, Formik } from "formik";
 import arrowIcon from "../../assets/arrow-icon.svg";
 import bookmarkIcon from "../../assets/bookmark-icon.svg";
 import InputField from "../../shared/inputField/InputField";
+import FileLoaderField from "../../shared/fileLoaderField/FileLoaderField";
 import { defaultValidate, validateNumberInput } from "../../utils/helpers";
 
 import "./createRate.scss";
-
 
 const CreateRate = () => {
 
@@ -51,7 +51,7 @@ const CreateRate = () => {
           <InputField name="market_rate" label="Murkup" onChange={validateNumberInput} />
           <InputField name="market_rate_other" label="Murkup 2" onChange={validateNumberInput} />
           <InputField name="round_num" label="Rounding" onChange={validateNumberInput} />
-          <InputField name="image" label="Image" />
+          <FileLoaderField name="image" label="Image" />
         </div>
       </Form>
     </Formik>

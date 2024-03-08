@@ -8,6 +8,7 @@ import { defaultValidate, formateDate } from "../../utils/helpers";
 import "./userEditForm.scss";
 import CheckboxField from "../../shared/checkboxField/CheckboxField";
 import FileLoaderField from "../../shared/fileLoaderField/FileLoaderField";
+import SelectField from "../../shared/selectField/SelectField";
 
 const userData = {};
 
@@ -52,22 +53,22 @@ const UserEditForm = () => {
                 <div className="user__info-text">{formateDate(userData.date_indentifier, true)}</div>
               </div>
               <div className="user__info-item">
-                <CheckboxField name="block" label="Block"/>
+                <CheckboxField name="block" label="Block" />
               </div>
               <div className="user__info-item">
-                <InputField name="phone_number" label="Phone number"/>
+                <InputField name="phone_number" label="Phone number" />
               </div>
               <div className="user__info-item">
-                <InputField name="telegram" label="Telegram"/>
+                <InputField name="telegram" label="Telegram" />
               </div>
               <div className="user__info-item">
-                <InputField name="email" label="Mail"/>
+                <InputField name="email" label="Mail" />
               </div>
               <div className="user__info-item">
-                <FileLoaderField name="skan_wallet" label="Income statement"/>
+                <FileLoaderField name="skan_wallet" label="Income statement" />
               </div>
               <div className="user__info-item">
-                <CheckboxField name="corresponds" label="Verification"/>
+                <CheckboxField name="corresponds" label="Verification" />
               </div>
               <div className="user__info-item__wrap">
                 <div className="user__info-item">
@@ -83,23 +84,21 @@ const UserEditForm = () => {
             <div className="user__info-body">
               <div className="user__info-section">
                 <div className="user__info-item">
-                  <InputField name="birth_date" label="Date of birth"/>
+                  <InputField name="birth_date" label="Date of birth" />
                 </div>
                 <div className="user__info-item">
-                  <InputField name="nationality" label="Nationality"/>
+                  <InputField name="nationality" label="Nationality" />
                 </div>
                 <div className="user__info-item">
-                  <InputField name="place_birth" label="Place and country of birth"/>
+                  <InputField name="place_birth" label="Place and country of birth" />
                 </div>
 
                 <div className="user__info-item">
-                  <h2 className="user__info-title">Gender</h2>
-                  <div className="user__info-text">
-                    {userData.gender === "M" && "Male"}
-                    {userData.gender === "F" && "Female"}
-                    {userData.gender === "O" && "Other"}
-                    {!userData.gender && "no"}
-                  </div>
+                  <SelectField
+                    name="gender"
+                    label="Gender"
+                    options={["Male", "Female", "Other"]}
+                  />
                 </div>
                 <div className="user__info-item">
                   <h2 className="user__info-title">Birth number</h2>

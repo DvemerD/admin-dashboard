@@ -2,39 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import Calendar from 'react-calendar';
 import calendarIcon from "../../assets/calendar-icon.svg";
 import { countDays, formateDate } from "../../utils/helpers";
+import useOutsideClick from "../../hooks/UseOutsideClick";
 
 import './datePicker.scss';
 
+
 const DatePicker = () => {
   const [value, onChange] = useState(new Date());
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef(null);
 
-  // useEffect(() => {
-  //   const handleClickOutside = (e) => {
-  //     if (popupRef.current && !popupRef.current.contains(e.target)) {
-  //       setOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('click', handleClickOutside);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleClickOutside);
-  //   };
-  // }, []);
+  useOutsideClick(popupRef, () => setIsOpen(false));
 
   const onCancelClick = () => {
     onChange([]); // for local
-    setOpen(!open);
-  }
-
-  const handleOpenCalendar = () => {
-    setOpen(!open);
-  }
-
-  const handleClickDone = () => {
-    setOpen(!open);
+    setIsOpen(!isOpen);
   }
 
   const outDate = () => {
@@ -55,10 +37,10 @@ const DatePicker = () => {
           className="filters__date-input"
           placeholder={outDate()}>
         </input>
-        <button className="filters__date-btn" onClick={handleOpenCalendar}>
+        <button className="filters__date-btn" onClick={() => setIsOpen(!isOpen)}>
           <img className="filters__date-icon" src={calendarIcon} alt="calendarIcon" />
         </button>
-        {open ?
+        {isOpen ?
           <div className="calendar__wrapper">
             <Calendar
               onChange={onChange}
@@ -75,10 +57,10 @@ const DatePicker = () => {
               <div className="calendar__btns">
                 <button
                   className="calendar__btn"
-                  onClick={onCancelClick}>Cancel</button>
+                  onClick={(onCancelClick)}>Cancel</button>
                 <button
                   className="calendar__btn calendar__btn_blue"
-                  onClick={handleClickDone}>Done</button>
+                  onClick={() => setIsOpen(!isOpen)}>Done</button>
               </div>
             </div>
           </div> : null}

@@ -6,7 +6,7 @@ import arrowHide from "../../assets/arrow-hide-icon.svg";
 
 import "./selectField.scss";
 
-const SelectField = memo(({ name, label, options }) => {
+const SelectField = memo(({ name, label = null, options }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
   const { setFieldValue } = useFormikContext();

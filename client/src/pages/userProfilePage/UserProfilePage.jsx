@@ -1,3 +1,4 @@
+import CreateTransaction from "../../components/createTransaction/CreateTransaction";
 import TableList from "../../components/tableList/TableList";
 import UserInfo from "../../components/userInfo/UserInfo";
 
@@ -19,6 +20,7 @@ const UserProfilePage = () => {
   return (
     <main className="user">
       <UserInfo />
+      <CreateTransaction />
       <TableList headerItems={headerItems} />
     </main>
   )

@@ -170,6 +170,14 @@ option {
   }
 }
 
+.error-message {
+  position: absolute;
+  font-size: 14px;
+  line-height: 14px;
+  padding-top: 2px;
+  color: #FF87CE;
+}
+
 @media (max-width: 768px) {
   .label {
     font-size: 14px;

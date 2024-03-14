@@ -21,7 +21,7 @@ const FileLoaderField = memo(({ name, label }) => {
           type="file"
           onChange={(event) => {
             if (event.currentTarget.files) {
-              setFieldValue(name, event.currentTarget.files);
+              setFieldValue(name, event.currentTarget.files[0]);
               setFileName(event.currentTarget.files[0].name);
             }
           }} />

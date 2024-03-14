@@ -8,14 +8,14 @@
   &__wrapper {
     margin-top: 12px;
     margin-bottom: 36px;
-    padding: 16px;
+    padding: 16px 16px 24px;
     width: 100%;
     border-radius: 12px;
     background: #FAF9FA;
     box-shadow: 2px 0px 2px 0px rgba(0, 0, 0, 0.03), 0px 0px 16px 0px rgba(0, 0, 0, 0.02);
     display: grid;
     grid-template-columns: minmax(490px, 45%) repeat(auto-fit, minmax(140px, 1fr));
-    gap: 20px;
+    gap: 25px;
     align-items: center;
   }
 

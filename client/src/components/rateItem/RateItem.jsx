@@ -80,7 +80,7 @@ const RateItem = ({ data }) => {
         </td>
         <td data-title="Image">
           <a href={data.image} target="_blank">
-            Open image <img src={openIcon} alt="link icon" />
+            Open&nbsp;image&nbsp;<img src={openIcon} alt="link icon" />
           </a>
         </td>
         <td className="table__more" ref={popupRef}>

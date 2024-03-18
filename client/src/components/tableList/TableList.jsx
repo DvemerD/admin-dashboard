@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import Spinner from "../../shared/spinner/Spinner";
+
 import "./tableList.scss";
 
 const minColumnWidth = 150;
@@ -12,7 +14,7 @@ const columnTypeToRatioMap = {
 const TableList = ({ headerItems, data = [], ComponentsItem, status }) => {
   const [columns, setColumns] = useState([]);
   const headerBeingResizedRef = useRef();
-  console.log(data)
+
   useEffect(() => {
     const columnsInit = [];
 
@@ -88,6 +90,9 @@ const TableList = ({ headerItems, data = [], ComponentsItem, status }) => {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              {status.isLoading && <td><Spinner /></td>}
+            </tr>
             {data.map((item, i) => (
               <ComponentsItem data={item} key={i} />
             ))}

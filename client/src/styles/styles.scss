@@ -15,6 +15,24 @@ body {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #13A4BD;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #13A4BD;
+  }
 }
 
 button,
@@ -163,7 +181,7 @@ option {
   line-height: 18px;
   color: #171618;
   cursor: pointer;
-  padding: 0; 
+  padding: 0;
 
   &:hover {
     opacity: .6;

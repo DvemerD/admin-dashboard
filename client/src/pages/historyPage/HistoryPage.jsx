@@ -21,10 +21,7 @@ const headerItems = [
 
 const HistoryPage = () => {
   const {
-    data: orders = [],
-    isLoading,
-    isError,
-  } = useGetHistoryOrdersQuery();
+    data: orders = [], isLoading, isError, error} = useGetHistoryOrdersQuery();
   const [openFilters, setOpenFilters] = useState(false);
   console.log(orders);
   return (

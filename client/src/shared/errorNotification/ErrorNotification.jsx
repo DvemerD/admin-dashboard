@@ -17,11 +17,12 @@ const ErrorNotification = ({ error }) => {
   return visible ? (
     <div className="status-message">
       <div className="notif notif-color-1 notif-active">
-        <p>Status: {status} - <br /> {
-          Object.entries(data)
-            .map(([key, messages]) => `${key}: ${messages.join('\n')}`)
+        <p>Status: {status} - <br />
+          {data && Object.keys(data)
+            .map(key => `${key}: ${data[key]}`)
             .join('\n')
-        }</p>
+          }
+        </p>
         <div className="notif-progress"></div>
       </div>
     </div>

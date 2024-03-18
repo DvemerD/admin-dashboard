@@ -36,3 +36,18 @@ export const validateNumberInput = (event, field) => {
 export const defaultValidate = (event, field) => {
   return field.onChange(event);
 }
+
+export const positionPopup = (ref) => {
+  if (ref.current) {
+    const select = ref.current;
+    const rect = select.getBoundingClientRect();
+
+    select.style.top = '35px';
+    select.style.bottom = `initial`;
+
+    if (rect.bottom > window.innerHeight) {
+      select.style.bottom = `${35}px`;
+      select.style.top = `initial`;
+    }
+  }
+}

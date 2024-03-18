@@ -5,7 +5,7 @@ import chekIcon from "../../assets/delivered-icon.svg";
 import "./checkboxField.scss";
 
 
-const CheckboxField = memo(({ name, label }) => {
+const CheckboxField = memo(({ name, label = "" }) => {
   const [field, meta, helpers] = useField(name);
   const { value } = meta;
   const { setValue } = helpers;

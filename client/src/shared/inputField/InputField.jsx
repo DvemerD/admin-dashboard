@@ -2,7 +2,7 @@ import { Field } from "formik";
 
 import "./inputField.scss";
 
-const InputField = ({ name, label, onChange = (event, field) => field.onChange(event) }) => (
+const InputField = ({ name, label = "", onChange = (event, field) => field.onChange(event) }) => (
   <Field name={name}>
     {({ field }) => (
       <div className="field__wrapper">

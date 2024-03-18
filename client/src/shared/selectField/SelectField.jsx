@@ -3,8 +3,10 @@ import { useFormikContext } from "formik";
 import useOutsideClick from "../../hooks/UseOutsideClick";
 import arrowMore from "../../assets/arrow-more-icon.svg";
 import arrowHide from "../../assets/arrow-hide-icon.svg";
+import { positionPopup } from "../../utils/helpers";
 
 import "./selectField.scss";
+
 
 const SelectField = memo(({ name, label = null, options }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -16,18 +18,7 @@ const SelectField = memo(({ name, label = null, options }) => {
   useOutsideClick(dropdownRef, () => setIsOpen(false));
 
   useEffect(() => {
-    if (selectRef.current) {
-      const select = selectRef.current;
-      const rect = select.getBoundingClientRect();
-
-      select.style.top = '35px';
-      select.style.bottom = `initial`;
-
-      if (rect.bottom > window.innerHeight) {
-        select.style.bottom = `${35}px`;
-        select.style.top = `initial`;
-      }
-    }
+    positionPopup(selectRef);
   }, [isOpen]);
 
   return (

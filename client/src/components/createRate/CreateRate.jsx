@@ -5,14 +5,14 @@ import bookmarkIcon from "../../assets/bookmark-icon.svg";
 import InputField from "../../shared/inputField/InputField";
 import FileLoaderField from "../../shared/fileLoaderField/FileLoaderField";
 import { validateNumberInput } from "../../utils/helpers";
-import { useAddRateMutation } from "../../redux/api/ratesApi";
+import { useCreateRateMutation } from "../../redux/api/ratesApi";
 import ErrorNotification from "../../shared/errorNotification/ErrorNotification";
 
 import "./createRate.scss";
 
 
 const CreateRate = () => {
-  const [addRate, { isLoading, isError, error }] = useAddRateMutation();
+  const [createRate, { isLoading, isError, error }] = useCreateRateMutation();
 
   return (
     <>
@@ -45,11 +45,11 @@ const CreateRate = () => {
           for (const [key, value] of Object.entries(values)) {
             formData.append(key, value);
           }
-          addRate(formData).unwrap();
+          createRate(formData).unwrap();
           resetForm();
         }}
       >
-        <Form className="rate-create" onChange={() => { console.log('c') }}>
+        <Form className="rate-create">
           <div className="rate-create__header">
             <h2 className="title__box rate-create__title">Create rate</h2>
             <button

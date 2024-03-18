@@ -6,15 +6,38 @@ export const ratesApi = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ['Rates'],
   endpoints: (builder) => ({
-    addRate: builder.mutation({
+    getRates: builder.query({
+      query: () => 'rate/',
+      providesTags: ['Rates']
+    }),
+    createRate: builder.mutation({
       query: (data) => ({
         url: 'rate/create/',
         method: 'POST',
         body: data,
-        peovidesTags: ['Rates']
-      })
+      }),
+      invalidatesTags: ['Rates']
+    }),
+    deleteRate: builder.mutation({
+      query: (id) => ({
+        url: `rate/${id}/`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Rates']
+    }),
+    putRate: builder.mutation({
+      query: ({id, data}) => ({
+        url: `rate/${id}/`,
+        method: 'PUT',
+        body: data
+      }),
+      invalidatesTags: ['Rates']
     })
   })
 });
 
-export const { useAddRateMutation } = ratesApi;
+export const {
+  useGetRatesQuery,
+  useCreateRateMutation,
+  useDeleteRateMutation,
+  usePutRateMutation } = ratesApi;

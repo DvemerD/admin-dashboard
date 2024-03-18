@@ -1,0 +1,17 @@
+.rate-item {
+  &_hide {
+    td {
+      opacity: 0.4;
+    }
+
+    .table__more {
+      opacity: 1;
+    }
+  }
+
+  .error-message {
+    font-size: 12px;
+    padding-top: 0;
+    margin-top: -1px;
+  }
+}

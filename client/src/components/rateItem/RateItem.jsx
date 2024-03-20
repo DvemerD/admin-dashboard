@@ -1,46 +1,35 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import Menu from "../../shared/menu/Menu";
+import EditRateItem from "./EditRateItem";
 import arrowIcon from "../../assets/arrow-icon.svg";
-import moreIcon from "../../assets/more-icon.svg";
 import openIcon from "../../assets/open-icon.svg";
-import useOutsideClick from "../../hooks/UseOutsideClick";
 import { useDeleteRateMutation, usePutRateMutation } from "../../redux/api/ratesApi";
 import ErrorNotification from "../../shared/errorNotification/ErrorNotification";
-import { positionPopup } from "../../utils/helpers";
 
 import "./RateItem.scss";
-import EditRateItem from "./EditRateItem";
 
 
 const RateItem = ({ data }) => {
   const [deleteRate, {
     isLoading: isDeleteLoading,
+    isSuccess: isDeleteSuccess,
     isError: isDeleteError,
     error: errorDelete }] = useDeleteRateMutation();
   const [putRate, {
     isLoading: isPutLoading,
+    isSuccess: isPutSuccess,
     error: errorPut }] = usePutRateMutation();
-  const [openMenu, setOpenMenu] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
-  const popupRef = useRef(null);
-  const popupMenuRef = useRef(null);
-
-  useOutsideClick(popupRef, () => setOpenMenu(false));
-
-  useEffect(() => {
-    positionPopup(popupMenuRef);
-  }, [openMenu]);
 
   const toggleHide = () => {
     const newObj = { ...data, hidden: !data.hidden };
     delete newObj.image;
 
     putRate({ id: data.id, data: newObj })
-      .then(res => setOpenMenu(false));
   }
 
   const handleDelete = () => {
     deleteRate(data.id)
-      .then(res => setOpenMenu(false));
   }
 
   return (<>
@@ -83,29 +72,21 @@ const RateItem = ({ data }) => {
             Open&nbsp;image&nbsp;<img src={openIcon} alt="link icon" />
           </a>
         </td>
-        <td className="table__more" ref={popupRef}>
-          <div onClick={() => setOpenMenu(!openMenu)}>
-            <img src={moreIcon} alt="more info" />
-          </div>
-          {openMenu && (
-            <ul className="table__more-list" ref={popupMenuRef}>
-              {(isDeleteLoading || isPutLoading) ?
-                (<li className="table__more-list__first">Loading...</li>) :
-                (<>
-                  <li
-                    className="table__more-list__first"
-                    onClick={() => {
-                      setOpenEdit(true);
-                      setOpenMenu(false);
-                    }}
-                  >
-                    Edit</li>
-                  <li onClick={toggleHide}>{data.hidden ? "Show" : "Hide"}</li>
-                  <li onClick={handleDelete}>Delete</li>
-                </>)
-              }
-            </ul>
-          )}
+        <td className="table__more">
+          <Menu
+            items={[
+              {
+                name: "Edit", onClick: () => {
+                  setOpenEdit(true);
+                }
+              },
+              { name: data.hidden ? "Show" : "Hide", onClick: toggleHide },
+              { name: "Delete", onClick: handleDelete }
+            ]}
+            status={{
+              isLoading: isDeleteLoading || isPutLoading,
+              isSuccess: isDeleteSuccess || isPutSuccess,
+            }} />
         </td>
       </tr>
     }

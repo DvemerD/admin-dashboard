@@ -1,7 +1,16 @@
 .comment {
+  &__box {
+    width: 100%;
+
+    &_grow {
+      flex-grow: 1;
+    }
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
+    gap: 16px;
 
     &__input {
       border-radius: 4px;
@@ -14,12 +23,13 @@
       font-style: normal;
       font-weight: 400;
       line-height: normal;
+      width: 100%;
+      height: 100%;
     }
 
     #username {
       height: 30px;
       padding: 10px 12px;
-      margin-bottom: 6px;
     }
 
     #text {
@@ -27,8 +37,7 @@
       resize: none;
       padding: 10px 12px;
       min-height: 100px;
-      flex-grow: 1;
-      margin-bottom: 12px;
+      margin: 0;
     }
 
     &__footer {
@@ -67,5 +76,10 @@
         height: 26px;
       }
     }
+  }
+
+  .error-message {
+    font-size: 13px;
+    padding: 0;
   }
 }

@@ -3,7 +3,7 @@ import baseQueryWithReauth from './query/baseQuery';
 
 export const ratesApi = createApi({
   reducerPath: 'ratesApi',
-  baseQuery: baseQueryWithReauth,
+  baseQuery: baseQueryWithReauth(`${import.meta.env.VITE_SERVER_URL}admin/`),
   tagTypes: ['Rates'],
   endpoints: (builder) => ({
     getRates: builder.query({

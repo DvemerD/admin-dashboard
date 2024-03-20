@@ -3,7 +3,7 @@ import baseQueryWithReauth from './query/baseQuery';
 
 export const ordersApi = createApi({
   reducerPath: 'ordersApi',
-  baseQuery: baseQueryWithReauth,
+  baseQuery: baseQueryWithReauth(`${import.meta.env.VITE_SERVER_URL}admin/`),
   tagTypes: ['Orders'],
   endpoints: (builder) => ({
     getHistoryOrders: builder.query({

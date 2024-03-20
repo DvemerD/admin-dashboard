@@ -17,7 +17,7 @@ const NewOrdersPage = () => {
 
   return (
     <main className="new-orders">
-      <TableList headerItems={headerItems} />
+      <TableList headerItems={headerItems} status={{isLoading: true}}/>
     </main>
   );
 };

@@ -1,21 +1,25 @@
 import Comment from "../../components/comment/Comment";
 import CreateComment from "../../components/createComment/CreateComment";
+import { useGetCommentsQuery } from "../../redux/api/commentsApi";
+import ErrorNotification from "../../shared/errorNotification/ErrorNotification";
 
 import "./commentsPage.scss";
 
 const CommentsPage = () => {
+  const { data: comments = [], isLoading, isError, error } = useGetCommentsQuery();
+
   return (
-    <main className="comment">
-      <div className="comments__wrapper">
-        <CreateComment />
-        <Comment data={{text: "Hello World!!!", rating: 3, username: "Joe Doe"}}/>
-        <Comment data={{text: "Hello World!!!", rating: 3, username: "Joe Doe"}}/>
-        <Comment data={{text: "Hello World!!!", rating: 3, username: "Joe Doe"}}/>
-        <Comment data={{text: "Hello World!!!", rating: 3, username: "Joe Doe"}}/>
-        <Comment data={{text: "Hello World!!!", rating: 3, username: "Joe Doe"}}/>
-        <Comment data={{text: "Hello World!!!", rating: 3, username: "Joe Doe"}}/>
-      </div>
-    </main>
+    <>
+      {isError && <ErrorNotification error={error} />}
+      <main className="comment">
+        <div className="comments__wrapper">
+          <CreateComment />
+          {comments.map((item, i) => (
+            <Comment key={i} data={item} />
+          ))}
+        </div>
+      </main>
+    </>
   );
 };
 

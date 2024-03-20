@@ -1,30 +1,19 @@
-import { useEffect, useRef, useState } from "react";
 import { ErrorMessage, Formik } from "formik";
 import * as Yup from 'yup';
-import { positionPopup, validateNumberInput } from "../../utils/helpers";
+import { validateNumberInput } from "../../utils/helpers";
 import { usePutRateMutation } from "../../redux/api/ratesApi";
-import useOutsideClick from "../../hooks/UseOutsideClick";
+import Menu from "../../shared/menu/Menu";
 import CheckboxField from "../../shared/checkboxField/CheckboxField";
 import FileLoaderField from "../../shared/fileLoaderField/FileLoaderField";
 import InputField from "../../shared/inputField/InputField";
 import ErrorNotification from "../../shared/errorNotification/ErrorNotification";
 import arrowIcon from "../../assets/arrow-icon.svg";
-import moreIcon from "../../assets/more-icon.svg";
 
 import "./RateItem.scss";
 
 
 const EditRateItem = ({ data, setOpenEdit }) => {
-  const [putRate, { isLoading, isError, error }] = usePutRateMutation();
-  const [openMenu, setOpenMenu] = useState(false);
-  const popupRef = useRef(null);
-  const popupMenuRef = useRef(null);
-
-  useOutsideClick(popupRef, () => setOpenMenu(false));
-
-  useEffect(() => {
-    positionPopup(popupMenuRef);
-  }, [openMenu]);
+  const [putRate, { isLoading, isSuccess, isError, error }] = usePutRateMutation();
 
   return (<>
     <tr>
@@ -55,7 +44,6 @@ const EditRateItem = ({ data, setOpenEdit }) => {
         putRate({ id: data.id, data: formData }).unwrap()
           .then(res => {
             setOpenEdit(false);
-            setOpenMenu(false);
           });
       }}
     >
@@ -109,25 +97,13 @@ const EditRateItem = ({ data, setOpenEdit }) => {
               <ErrorMessage className="error-message" name="image" component="div" />
             </div>
           </td>
-          <td className="table__more" ref={popupRef}>
-            <div onClick={() => setOpenMenu(!openMenu)}>
-              <img src={moreIcon} alt="more info" />
-            </div>
-            {openMenu && (
-              <ul className="table__more-list" ref={popupMenuRef}>
-                {isLoading ?
-                  (<li className="table__more-list__first">Loading...</li>) :
-                  (<>
-                    <li
-                      className="table__more-list__first"
-                      onClick={() => submitForm()}
-                    >
-                      Save</li>
-                    <li onClick={() => setOpenEdit(false)}>Cancel</li>
-                  </>)
-                }
-              </ul>
-            )}
+          <td className="table__more">
+            <Menu
+              items={[
+                { name: "Save", onClick: () => submitForm() },
+                { name: "Cancel", onClick: () => setOpenEdit(false) }
+              ]}
+              status={{ isLoading, isSuccess }} />
           </td>
         </tr>
       )}

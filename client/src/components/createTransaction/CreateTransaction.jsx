@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Form, Formik } from "formik";
+import { useCreateTransactionMutation } from "../../redux/api/usersApi";
+import { useGetRatesQuery } from "../../redux/api/ratesApi";
 import InputField from "../../shared/inputField/InputField";
 import SelectField from "../../shared/selectField/SelectField";
 import { validateNumberInput } from "../../utils/helpers";
@@ -13,7 +15,12 @@ const CreateTransaction = () => {
   const [options, setOptions] = useState([
     "USD", "BTC", "ETH", "LTC", "USDT", "XRP"
   ]);
-
+  const [createTransaction, {
+    isLoadingTransaction,
+    isErrorTransaction,
+    errorTransaction }] = useCreateTransactionMutation();
+  const { data: rates = [], isLoadingRates, isErrorRates, errorRates } = useGetRatesQuery();
+  
   return (
     <div className="transaction">
       <Formik>

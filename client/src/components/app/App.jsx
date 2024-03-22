@@ -8,6 +8,7 @@ import UserProfilePage from "../../pages/userProfilePage/UserProfilePage";
 import LoginPage from "../../pages/loginPage/LoginPage";
 import PrivateRoutes from "../../shared/privateRoutes/PrivateRoutes";
 import UserEditPage from "../../pages/userEditPage/UserEditPage";
+import UserCreatePage from "../../pages/userCreatePage/UserCreatePage";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/change-rate" element={<ChangeRatePage />} />
               <Route path="/user/:id" element={<UserProfilePage />} />
               <Route path="/user/:id/edit" element={<UserEditPage />} />
+              <Route path="/user/create" element={<UserCreatePage />} />
             </Route>
             <Route path="/login" element={<LoginPage />} />
           </Routes>

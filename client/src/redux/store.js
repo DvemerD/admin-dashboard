@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import auth from './features/authSlice';
 import { ordersApi } from './api/ordersApi';
 import { authApi } from './api/authApi';
 import { ratesApi } from './api/ratesApi';
 import { commentsApi } from './api/commentsApi';
-import auth from './features/authSlice';
+import { usersApi } from './api/usersApi';
 
 export const store = configureStore({
   reducer: {
@@ -11,15 +12,17 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [ratesApi.reducerPath]: ratesApi.reducer,
     [commentsApi.reducerPath]: commentsApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
     auth
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       ...[
         ordersApi.middleware,
-        authApi.middleware, 
+        authApi.middleware,
         ratesApi.middleware,
-        commentsApi.middleware
+        commentsApi.middleware,
+        usersApi.middleware
       ]
     ),
   devTools: import.meta.env.VITE_DEV_MODE !== "production",

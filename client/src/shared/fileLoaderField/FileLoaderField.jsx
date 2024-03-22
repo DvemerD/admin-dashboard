@@ -6,7 +6,7 @@ import "./fileLoaderField.scss";
 
 const FileLoaderField = memo(({ name, label = "" }) => {
   const { setFieldValue, values, isSubmitting } = useFormikContext();
-  const [fileName, setFileName] = useState(values[name].name);
+  const [fileName, setFileName] = useState(values[name]);
   const id = useId();
 
   useEffect(() => {

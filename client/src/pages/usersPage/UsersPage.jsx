@@ -1,11 +1,14 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Search from "../../components/search/Search";
 import TableList from "../../components/tableList/TableList";
+import { useGetUsersQuery } from "../../redux/api/usersApi";
+import UserItem from "../../components/userItem/UserItem";
+import ErrorNotification from "../../shared/errorNotification/ErrorNotification";
 
 import "./usersPage.scss";
 
 const headerItems = [
-  { "dataType": "text-short", "name": "Initials" },
+  { "dataType": "text-long", "name": "Initials" },
   { "dataType": "text-short", "name": "Register date" },
   { "dataType": "text-short", "name": "Phone number" },
   { "dataType": "text-long", "name": "Contacts" },
@@ -15,11 +18,11 @@ const headerItems = [
 ];
 
 const UsersPage = () => {
-  return (
+  const { data: users = [], isLoading, isError, error } = useGetUsersQuery();
+
+  return (<>
+    {isError && <ErrorNotification error={error} />}
     <main className="users">
-      <Link to={`/user/1`}>
-        Edit
-      </Link>
       <div className="users__subheader">
         <div className="users__field">
           <Search />
@@ -31,9 +34,14 @@ const UsersPage = () => {
           </NavLink>
         </div>
       </div>
-      <TableList headerItems={headerItems} />
+      <TableList
+        headerItems={headerItems}
+        data={users.results}
+        ComponentsItem={UserItem}
+        status={{ isLoading }}
+      />
     </main>
-  );
+  </>);
 };
 
 export default UsersPage;

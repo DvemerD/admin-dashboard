@@ -2,6 +2,7 @@ import CreateRate from "../../components/createRate/CreateRate";
 import RateItem from "../../components/rateItem/RateItem";
 import TableList from "../../components/tableList/TableList";
 import { useGetRatesQuery } from "../../redux/api/ratesApi";
+import ErrorNotification from "../../shared/errorNotification/ErrorNotification";
 
 import "./changeRatePage.scss";
 
@@ -19,17 +20,18 @@ const headerItems = [
 const ChangeRatePage = () => {
   const { data: rates = [], isLoading, isError, error } = useGetRatesQuery();
 
-  return (
+  return (<>
+    {isError && <ErrorNotification error={error} />}
     <main className="rate">
       <CreateRate />
       <TableList
         headerItems={headerItems}
         data={rates}
         ComponentsItem={RateItem}
-        status={{ isLoading, isError, error }}
+        status={{ isLoading }}
       />
     </main>
-  );
+  </>);
 };
 
 export default ChangeRatePage;

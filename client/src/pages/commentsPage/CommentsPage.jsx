@@ -2,6 +2,7 @@ import Comment from "../../components/comment/Comment";
 import CreateComment from "../../components/createComment/CreateComment";
 import { useGetCommentsQuery } from "../../redux/api/commentsApi";
 import ErrorNotification from "../../shared/errorNotification/ErrorNotification";
+import Spinner from "../../shared/spinner/Spinner";
 
 import "./commentsPage.scss";
 
@@ -13,12 +14,14 @@ const CommentsPage = () => {
       {isError && <ErrorNotification error={error} />}
       <main className="comment">
         <div className="comments__wrapper">
-          <CreateComment />
-          {comments.map((item, i) => (
-            <Comment key={i} data={item} />
-          ))}
+          {isLoading ? <Spinner /> : <>
+            <CreateComment />
+            {comments.map((item, i) => (
+              <Comment key={i} data={item} />
+            ))}
+          </>}
         </div>
-      </main>
+      </main >
     </>
   );
 };

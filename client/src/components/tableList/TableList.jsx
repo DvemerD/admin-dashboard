@@ -91,46 +91,11 @@ const TableList = ({ headerItems, data = [], ComponentsItem, status }) => {
           </thead>
           <tbody>
             <tr>
-              {status.isLoading && <td><Spinner /></td>}
+              {status.isLoading && <td style={{border: "none"}}><Spinner /></td>}
             </tr>
             {data.map((item, i) => (
               <ComponentsItem data={item} key={i} />
             ))}
-            {/* <tr>
-              <td data-title="ID">2345634</td>
-              <td data-title="Date & Time">
-                <div>
-                  23.04.2023 <br /> 18:00
-                </div>
-              </td>
-              <td data-title="Echange rate">
-                <span>
-                  <div className="center__content">BTC<img className="tabele__arrow" src={arrowIcon} alt="arrow left" />ETH<br /></div>
-                  <div className="center__content">10 <img className="tabele__arrow" src={arrowIcon} alt="arrow left" /> 100</div>
-                </span>
-              </td>
-              <td data-title="Trade">
-                <div className="center__content">500 <img className="tabele__arrow" src={arrowIcon} alt="arrow left" /> 700</div>
-              </td>
-              <td data-title="Markup" className="item__markup">3% (120 CZK)</td>
-              <td data-title="Initials" className="initials">
-                <div className="user-name">
-                  Vyacheslav <br /> Sagvinikov
-                </div>
-              </td>
-              <td data-title="Contact">
-                <div className="inner__content">
-                  dareeweqewqewqeqwre32.@gmail.com
-                  <br /> @qwertyasdf23
-                </div>
-              </td>
-              <td data-title="Phone number">+380992869837</td>
-              <td className="table__more">
-                <div onClick={() => toggleMenu()}>
-                  <img src={moreIcon} alt="more info about user" />
-                </div>
-              </td>
-            </tr> */}
           </tbody>
         </table>
       </div>

@@ -15,6 +15,15 @@
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.02), 2px 0px 2px rgba(0, 0, 0, 0.03);
     border-radius: 12px;
     padding: 16px;
+    min-height: 280px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #13A4BD;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   &__info-top,
@@ -105,6 +114,7 @@
 
 @media (max-width: 1015px) {
   .user {
+
     &__info-top,
     &__info-section {
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -114,6 +124,7 @@
 
 @media (max-width: 576px) {
   .user {
+
     &__info-top,
     &__info-section {
       grid-template-columns: 1fr;

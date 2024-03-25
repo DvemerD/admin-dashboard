@@ -9,10 +9,14 @@ const UserItem = ({ data }) => {
 
   return (<>
     <tr onClick={() => navigate(`/user/${id}`)}>
-      <td data-title="Initials">{name} {surname}</td>
+      <td data-title="Initials"><div>{name} {surname}</div></td>
       <td data-title="Register date">{formateDate(date_indentifier)}</td>
-      <td data-title="Phone number">{phone_number}</td>
-      <td data-title="Contacts">{email} <br /> {telegram}</td>
+      <td data-title="Phone number"><div><a href={`tel:${phone_number}`}>{phone_number}</a></div></td>
+      <td data-title="Contact">
+        <a href={`mailto:${email}`}>{email}</a>
+        <br />
+        <a href={`tg://resolve?domain=${telegram}`}>{telegram}</a>
+      </td>
       <td data-title="Income statement">{skan_wallet ? 'yes' : 'no'}</td>
       <td data-title="Verification">{corresponds ? 'yes' : 'no'}</td>
       <td data-title="PO">no</td>

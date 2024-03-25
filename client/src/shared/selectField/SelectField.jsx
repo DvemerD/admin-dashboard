@@ -8,18 +8,22 @@ import { positionPopup } from "../../utils/helpers";
 import "./selectField.scss";
 
 
-const SelectField = memo(({ name, label = null, options }) => {
+const SelectField = memo(({ name, label = null, options, setValue = null }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
   const { setFieldValue } = useFormikContext();
   const dropdownRef = useRef();
   const selectRef = useRef();
-
+  
   useOutsideClick(dropdownRef, () => setIsOpen(false));
 
   useEffect(() => {
     positionPopup(selectRef);
   }, [isOpen]);
+
+  useEffect(() => {
+    setValue ? setValue(selectedOption) : null;
+  }, [selectedOption]);
 
   return (
     <div className="select" ref={dropdownRef}>

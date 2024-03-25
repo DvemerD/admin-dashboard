@@ -8,10 +8,10 @@ import ErrorNotification from "../../shared/errorNotification/ErrorNotification"
 import "./usersPage.scss";
 
 const headerItems = [
-  { "dataType": "text-long", "name": "Initials" },
+  { "dataType": "text-short", "name": "Initials" },
   { "dataType": "text-short", "name": "Register date" },
   { "dataType": "text-short", "name": "Phone number" },
-  { "dataType": "text-long", "name": "Contacts" },
+  { "dataType": "text-short", "name": "Contacts" },
   { "dataType": "text-short", "name": "Income statement" },
   { "dataType": "text-short", "name": "Verification" },
   { "dataType": "text-short", "name": "PO" },

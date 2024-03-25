@@ -54,12 +54,12 @@ const DatePicker = () => {
               <div className="calendar__days">
                 {(value.length !== 0) && `${Array.isArray(value) ? countDays(value) : '0 day'}`}
               </div>
-              <div className="calendar__btns">
+              <div className="calendar_btns">
                 <button
-                  className="calendar__btn"
+                  className="calendar_btn"
                   onClick={(onCancelClick)}>Cancel</button>
                 <button
-                  className="calendar__btn calendar__btn_blue"
+                  className="calendar_btn calendar_btn_blue"
                   onClick={() => setIsOpen(!isOpen)}>Done</button>
               </div>
             </div>

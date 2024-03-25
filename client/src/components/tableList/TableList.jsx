@@ -91,7 +91,7 @@ const TableList = ({ headerItems, data = [], ComponentsItem, status }) => {
           </thead>
           <tbody>
             <tr>
-              {status.isLoading && <td style={{border: "none"}}><Spinner /></td>}
+              {status.isLoading && <td className="spinner"><Spinner /></td>}
             </tr>
             {data.map((item, i) => (
               <ComponentsItem data={item} key={i} />

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGetHistoryOrdersQuery } from "../../redux/api/ordersApi";
+import TransactionItem from "../../components/transactionItem/TransactionItem";
 import Filters from "../../components/filters/Filters";
 import Search from "../../components/search/Search";
 import TableList from "../../components/tableList/TableList";
@@ -18,13 +19,12 @@ const headerItems = [
   { "dataType": "text-short", "name": "Phone number" },
 ];
 
-
 const HistoryPage = () => {
   const {
-    data: orders = [], isLoading, isError, error} = useGetHistoryOrdersQuery();
+    data: orders = [], isLoading, isError, error } = useGetHistoryOrdersQuery();
   const [openFilters, setOpenFilters] = useState(false);
-  console.log(orders);
-  return (
+
+  return (<>
     <main className="history">
       <div className="history__subheader">
         <div className="history__field">
@@ -38,9 +38,14 @@ const HistoryPage = () => {
         </div>
         <Filters openFilters={openFilters} />
       </div>
-      <TableList headerItems={headerItems} />
+      <TableList
+        headerItems={headerItems}
+        data={orders.results}
+        status={{ isLoading }}
+        ComponentsItem={TransactionItem}
+      />
     </main>
-  );
+  </>);
 };
 
 export default HistoryPage;

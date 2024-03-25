@@ -11,7 +11,9 @@ const InputField = ({ name, label = "", onChange = (event, field) => field.onCha
           type="text"
           className="input field__input"
           {...field}
-          onChange={event => onChange(event, field)}
+          onChange={event => {
+            onChange(event, field);
+          }}
         />
       </div>
     )}
